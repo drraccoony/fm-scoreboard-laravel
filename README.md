@@ -1,3 +1,35 @@
+# Convention Game Scoreboard
+
+This application needs a better description
+
+## Local Setup
+The following are dependencies for running locally
+* PHP (+8.0)
+* Composer
+* Docker Desktop
+* Node
+* NPM
+
+With these dependencies installed do the following:
+1. Start Docker Desktop
+2. Run in terminal `composer require laravel/sail --dev`
+3. Copy the file `.env.example` then rename the copy to `.env`
+4. Run in terminal `npm install`
+
+This should complete the setup of the local environment
+
+## Local Runtime
+To run the Laravel app locally make sure to complete the [Local Setup](#local-setup) first. Once completed then do the following:
+1. Run in terminal `npm run dev`
+2. Run in another terminal `./vendor/bin/sail up`
+3. Wait until `Started Selenium` is seen in the terminal
+
+Now you can visit the site by opening a browser and going to http://localhost
+
+Whenever you make a change to the source files it should automatically refresh in your browser. If not then stop the terminal running `npm run dev` and run the command again.
+
+<hr>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

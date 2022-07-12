@@ -28,17 +28,7 @@ Now you can visit the site by opening a browser and going to http://localhost
 
 Whenever you make a change to the source files it should automatically refresh in your browser. If not then stop the terminal running `npm run dev` and run the command again.
 
-
-
-
-
-
-
-
-
-
-
-
+<hr>
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 

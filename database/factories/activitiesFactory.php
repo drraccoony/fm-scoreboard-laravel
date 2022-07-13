@@ -29,7 +29,6 @@ class ActivitiesFactory extends Factory
             'ends_at' => now(),
         ];
     }
-
     /**
      * Indicate that the model's type.
      *

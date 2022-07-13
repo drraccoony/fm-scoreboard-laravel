@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('logged_activities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('activity_id');
+            $table->foreignId('user_id');
+            $table->foreignId('team_id');
             $table->timestamps();
         });
     }

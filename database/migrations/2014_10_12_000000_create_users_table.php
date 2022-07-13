@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('badge_number')->nullable();
             $table->boolean('is_admin')->default(false);
             $table->string('password');
+            $table->foreignId('team_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

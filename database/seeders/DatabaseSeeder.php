@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Create some teams...
         \App\Models\team::factory()->create([
             'name' => 'Alpha Team',
             'owner_id' => 2
@@ -27,16 +28,20 @@ class DatabaseSeeder extends Seeder
             'owner_id' => 1
         ]);
 
+        // Create some activities...
         \App\Models\activities::factory(5)->create();
         \App\Models\activities::factory(2)->mainstage()->points500()->create();
 
+        // Create some users.
         \App\Models\User::factory(5)->create();
         \App\Models\User::factory(2)->unverified()->create();
 
+        // Create a consistent known user for us to login with.
+        // Password hash defaults to 'password'
         \App\Models\User::factory()->create([
             'name' => 'Rico',
             'email' => 'drraccoony@gmail.com',
-            'team_id' => 1
+            'team_id' => 1,
         ]);
     }
 }

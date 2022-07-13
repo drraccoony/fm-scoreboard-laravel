@@ -16,6 +16,8 @@ class activitiesFactory extends Factory
      */
     public function definition()
     {
+        // Really good resource for looking up the faker formatters.
+        // https://github.com/fzaninotto/Faker
         return [
             // 'name' => fake()->name(),
             'name' => 'Convention Activity',
@@ -27,14 +29,7 @@ class activitiesFactory extends Factory
             'ends_at' => now(),
         ];
     }
-    // $table->id();
-    // $table->string('name');
-    // $table->text('description')->nullable();
-    // $table->enum('type', ['panel', 'mainstage', 'cache', 'special', 'other']);
-    // $table->integer('points');
-    // $table->string('guid');
-    // $table->dateTime('starts_at');
-    // $table->dateTime('ends_at');
+
     /**
      * Indicate that the model's type.
      *

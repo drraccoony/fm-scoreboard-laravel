@@ -9,6 +9,9 @@ class team extends Model
 {
     use HasFactory;
 
+    /**
+     * Create the owner relationship lookup
+     */
     public function owner()
     {
         return $this->belongsTo(User::class);

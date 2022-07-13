@@ -42,6 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Create the team relationship lookup
+     */
     public function team()
     {
         return $this->belongsTo(team::class);

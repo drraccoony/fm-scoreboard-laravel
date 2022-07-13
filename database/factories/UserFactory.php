@@ -17,6 +17,8 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        // Really good resource for looking up the faker formatters.
+        // https://github.com/fzaninotto/Faker
         return [
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),

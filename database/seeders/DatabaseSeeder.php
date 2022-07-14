@@ -16,23 +16,47 @@ class DatabaseSeeder extends Seeder
     {
         // Create some teams...
         \App\Models\team::factory()->create([
-            'name' => 'Alpha Team',
+            'name' => 'Core Dynamics',
             'owner_id' => 2
         ]);
         \App\Models\team::factory()->create([
-            'name' => 'Bravo Team',
+            'name' => 'Faulcon DeLacy',
             'owner_id' => 4
         ]);
         \App\Models\team::factory()->create([
-            'name' => 'Charlie Team',
+            'name' => 'Manticore',
             'owner_id' => 1
         ]);
 
         // Create some activities...
+        \App\Models\activities::factory()->create([
+            'name' => 'How To Fursuit 101',
+            'points' => 150,
+        ]);
+        \App\Models\activities::factory()->create([
+            'name' => '2 Hours Volunteering',
+            'type' => 'special',
+            'points' => 200*2
+        ]);
+        \App\Models\activities::factory()->create([
+            'name' => 'Harassed Kal\'hona',
+            'type' => 'special',
+            'points' => 750
+        ]);
         \App\Models\activities::factory(5)->create();
         \App\Models\activities::factory(2)->mainstage()->points500()->create();
 
         // Create some activity logs...
+        \App\Models\logged_activities::factory()->create([
+            'activity_id' => 1,
+            'user_id' => 8,
+            'team_id' => 2,
+        ]);
+        \App\Models\logged_activities::factory(3)->create([
+            'activity_id' => 2,
+            'user_id' => 8,
+            'team_id' => 1,
+        ]);
         \App\Models\logged_activities::factory()->create([
             'activity_id' => 3,
             'user_id' => 8,
@@ -48,6 +72,7 @@ class DatabaseSeeder extends Seeder
 
         // Create a consistent known user for us to login with.
         // Password hash defaults to 'password'
+        // id should == 8
         \App\Models\User::factory()->create([
             'name' => 'Rico',
             'email' => 'drraccoony@gmail.com',

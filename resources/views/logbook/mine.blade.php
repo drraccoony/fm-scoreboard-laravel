@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200 p-6">
-                    My Logged Points
+                    Logged Points
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
                     <p class="text-gray-500 pb-6">
@@ -51,7 +51,7 @@
                                         {{$item->activity->points}}
                                     </td>
                                     <td class="py-4 px-6">
-                                        {{$item->team->name}}
+                                        {{$item->team?->name ?? 'BORKED'}}
                                     </td>
                                     <td class="py-4 px-6">
                                         {{$item->created_at->format('M j, Y @ h:m A');}}

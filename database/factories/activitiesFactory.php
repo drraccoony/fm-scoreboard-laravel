@@ -20,7 +20,7 @@ class ActivitiesFactory extends Factory
         // https://github.com/fzaninotto/Faker
         return [
             // 'name' => fake()->name(),
-            'name' => 'Convention Activity',
+            'name' => 'Some Convention Activity',
             'description' => fake()->sentence(),
             'type' => 'panel',
             'points' => fake()->numberBetween(100,500),

@@ -32,6 +32,16 @@ class DatabaseSeeder extends Seeder
         \App\Models\activities::factory(5)->create();
         \App\Models\activities::factory(2)->mainstage()->points500()->create();
 
+        // Create some activity logs...
+        \App\Models\logged_activities::factory()->create([
+            'activity_id' => 3,
+            'user_id' => 8,
+            'team_id' => 1,
+        ]);
+
+        \App\Models\activities::factory(5)->create();
+        \App\Models\activities::factory(2)->mainstage()->points500()->create();
+
         // Create some users.
         \App\Models\User::factory(5)->create();
         \App\Models\User::factory(2)->unverified()->create();

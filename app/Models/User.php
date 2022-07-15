@@ -47,6 +47,14 @@ class User extends Authenticatable
      */
     public function team()
     {
-        return $this->belongsTo(team::class);
+        return $this->belongsTo(Team::class);
+    }
+
+    /**
+     * Create the logged_activities relationship lookup
+     */
+    public function loggedActivities()
+    {
+        return $this->hasMany(LoggedActivities::class);
     }
 }

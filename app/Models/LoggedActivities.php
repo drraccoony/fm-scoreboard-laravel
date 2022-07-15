@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class logged_activities extends Model
+class LoggedActivities extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class logged_activities extends Model
      */
     public function activity()
     {
-        return $this->belongsTo(activities::class);
+        return $this->belongsTo(Activities::class);
     }
 
     /**
@@ -30,7 +30,7 @@ class logged_activities extends Model
      */
     public function team()
     {
-        return $this->belongsTo(team::class);
+        return $this->belongsTo(Team::class);
     }
 
 }

@@ -15,22 +15,22 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Create some teams...
-        \App\Models\team::factory()->create([
+        \App\Models\Team::factory()->create([
             'name' => 'Alpha Team',
             'owner_id' => 2
         ]);
-        \App\Models\team::factory()->create([
+        \App\Models\Team::factory()->create([
             'name' => 'Bravo Team',
             'owner_id' => 4
         ]);
-        \App\Models\team::factory()->create([
+        \App\Models\Team::factory()->create([
             'name' => 'Charlie Team',
             'owner_id' => 1
         ]);
 
         // Create some activities...
-        \App\Models\activities::factory(5)->create();
-        \App\Models\activities::factory(2)->mainstage()->points500()->create();
+        \App\Models\Activities::factory(5)->create();
+        \App\Models\Activities::factory(2)->mainstage()->points500()->create();
 
         // Create some users.
         \App\Models\User::factory(5)->create();

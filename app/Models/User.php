@@ -41,4 +41,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Create the team relationship lookup
+     */
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
+
+    /**
+     * Create the logged_activities relationship lookup
+     */
+    public function loggedActivities()
+    {
+        return $this->hasMany(LoggedActivities::class);
+    }
 }

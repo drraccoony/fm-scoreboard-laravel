@@ -28,6 +28,36 @@ Now you can visit the site by opening a browser and going to http://localhost
 
 Whenever you make a change to the source files it should automatically refresh in your browser. If not then stop the terminal running `npm run dev` and run the command again.
 
+## Working with the database
+To run the migrations and init your database, you'll want to run `sail artisan migrate:fresh`. This will run through all the migration files and populate your database with the tables and columns.
+
+If you want to migrate **and** populate the database with some seed data (sample data to play with), you'll want to run it with the `--seed` parameter, like such: `sail artisan migrate:fresh --seed`.
+
+### Tinkering!
+A super useful tool for playing with the database and running queries in the command line/terminal is `sail artisan tinker`.
+
+Some examples:
+
+- Get user id 2 in the DB:
+    ```bash
+    >>> $team = App\Models\User::find(2)
+    ```
+- Get user id 4, and return its team relationship.
+    ```bash
+    >>> $user = App\Models\User::find(2)
+    >>> $user->team
+    ```
+- Create a new team.
+    ```bash
+    >>> use App\Models\team
+    >>> $t = new team;
+    >>> $t->name = 'Space Hoots'
+    >>> $t->owner_id = 2
+    >>> $t->save();
+    ```
+    This should return `true` if it worked.
+
+
 <hr>
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>

@@ -18,6 +18,13 @@
                     <x-nav-link :href="route('activity_log.mine')" :active="request()->routeIs('activity_log.mine')">
                         Logbook
                     </x-nav-link>
+
+                    {{-- Admin routes --}}
+                    @if ( Auth::user()->is_admin )
+                        <x-nav-link class="text-red-500" :href="route('activities')" :active="request()->routeIs('activities')">
+                            Activities
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -47,6 +54,13 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+                        @if ( Auth::user()->is_admin )
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                                Admin: View Activities
+                            </x-dropdown-link>
+                        @endif
                     </x-slot>
                 </x-dropdown>
             </div>

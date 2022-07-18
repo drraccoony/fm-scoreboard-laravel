@@ -17,7 +17,6 @@ use App\Http\Controllers\ActivityLogController;
 
 Route::get('/', function () {
     return redirect('/dashboard');
-    // return view('welcome');
 });
 
 Route::get('/dashboard', function () {
@@ -26,12 +25,12 @@ Route::get('/dashboard', function () {
 
 Route::get('/activities', [ActivitiesController::class, 'index'])
     ->middleware(['auth'])->name('activities');
+Route::get('/activities/create', [ActivitiesController::class, 'create'])
+    ->middleware(['auth'])->name('activities.create');
+Route::post('/activities/create', [ActivitiesController::class, 'store'])
+    ->middleware(['auth'])->name('activities.store');
 
 Route::get('/log/mine', [ActivityLogController::class, 'mine'])
     ->middleware(['auth'])->name('activity_log.mine');
-
-// Route::get('/activities', function () {
-//     return view('activities.index');
-// })->middleware(['auth'])->name('activities');
 
 require __DIR__.'/auth.php';

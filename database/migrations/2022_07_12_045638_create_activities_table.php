@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->enum('type', ['panel', 'mainstage', 'cache', 'special', 'volunteer', 'other']);
+            $table->enum('type', ['Panel', 'Mainstage', 'Cache', 'Special', 'Volunteer', 'Other']);
             $table->integer('points');
-            $table->string('guid');
+            $table->string('guid')->unique();
             $table->dateTime('starts_at')->nullable();
             $table->dateTime('ends_at')->nullable();
             $table->softDeletes();

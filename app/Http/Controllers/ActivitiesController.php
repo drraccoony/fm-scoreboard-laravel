@@ -19,7 +19,7 @@ class ActivitiesController extends Controller
     public function create(Request $request)
     {
 
-        return view('activities.create')
+        return view('activities.create', $request)
             ->with(compact('request'));
     }
 
@@ -35,7 +35,7 @@ class ActivitiesController extends Controller
         $request->validate([
             'name' => ['required','string'],
             'points' => ['required','integer'],
-            'type' => ['required','string'],
+            'type' => 'in:Panel,Mainstage,Cache,Special,Volunteer,Other',
         ]);
         // $activities = Activities::create($request->all());
         $post = new Activities;

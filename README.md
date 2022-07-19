@@ -4,6 +4,7 @@ This application needs a better description
 
 ## Local Setup
 The following are dependencies for running locally
+
 * PHP (+8.0)
 * Composer
 * Docker Desktop
@@ -11,6 +12,7 @@ The following are dependencies for running locally
 * NPM
 
 With these dependencies installed do the following:
+
 1. Start Docker Desktop
 2. Run in terminal `composer require laravel/sail --dev`
 3. Copy the file `.env.example` then rename the copy to `.env`
@@ -20,9 +22,11 @@ This should complete the setup of the local environment
 
 ## Local Runtime
 To run the Laravel app locally make sure to complete the [Local Setup](#local-setup) first. Once completed then do the following:
+
 1. Run in terminal `npm run dev`
 2. Run in another terminal `./vendor/bin/sail up`
 3. Wait until `Started Selenium` is seen in the terminal
+4. If this is your *first time* running the application, generate a key with `sail artisan key:generate`
 
 Now you can visit the site by opening a browser and going to http://localhost
 

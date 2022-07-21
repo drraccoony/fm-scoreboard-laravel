@@ -15,22 +15,39 @@ use App\Http\Controllers\ActivityLogController;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/dashboard');
+
+/*
+|--------------------------------------------------------------------------
+| Auth User Routes
+|--------------------------------------------------------------------------
+|*/
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return redirect('/dashboard');
+    });
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/log/mine', [ActivityLogController::class, 'mine'])
+    ->name('activity_log.mine');
+});
+  
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|*/
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/activities', [ActivitiesController::class, 'index'])
+        ->name('activities');
+    Route::get('/activities/create', [ActivitiesController::class, 'create'])
+        ->name('activities.create');
+
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/activities', [ActivitiesController::class, 'index'])
-    ->middleware(['auth'])->name('activities');
-Route::get('/activities/create', [ActivitiesController::class, 'create'])
-    ->middleware(['auth'])->name('activities.create');
-Route::post('/activities/create', [ActivitiesController::class, 'store'])
-    ->middleware(['auth'])->name('activities.store');
-
-Route::get('/log/mine', [ActivityLogController::class, 'mine'])
-    ->middleware(['auth'])->name('activity_log.mine');
 
 require __DIR__.'/auth.php';

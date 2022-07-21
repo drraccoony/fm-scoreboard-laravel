@@ -41,7 +41,7 @@ Route::get('/users/{id}/edit', [UsersController::class, 'edit'])
     ->middleware(['auth'])->name('user.edit');
 
 Route::get('/users/{id}/confirm', [UsersController::class, 'confirm'])
-    ->middleware(['auth'])->name('user.confirm');
+    ->middleware(['auth'])->name('user.confirm')->withTrashed();
 
 Route::get('/users/{id}/delete', [UsersController::class, 'delete'])
     ->middleware(['auth'])->name('user.delete');

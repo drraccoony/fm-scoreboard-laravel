@@ -16,17 +16,18 @@ class DatabaseSeeder extends Seeder
     {
         // Create some teams...
         \App\Models\Team::factory()->create([
-            'name' => 'Alpha Team',
+            'name' => 'Faulcon DeLacy',
             'owner_id' => 2
         ]);
         \App\Models\Team::factory()->create([
-            'name' => 'Bravo Team',
+            'name' => 'Core Dynamics',
             'owner_id' => 4
         ]);
         \App\Models\Team::factory()->create([
-            'name' => 'Charlie Team',
+            'name' => 'Azimuth Biochemicals',
             'owner_id' => 1
         ]);
+        \App\Models\Team::factory(2)->create();
 
         // Create some Activities...
         \App\Models\Activities::factory(5)->create();
@@ -40,11 +41,6 @@ class DatabaseSeeder extends Seeder
             'name' => '2 Hours Volunteering',
             'type' => 'special',
             'points' => 200*2
-        ]);
-        \App\Models\Activities::factory()->create([
-            'name' => 'Harassed Kal\'hona',
-            'type' => 'special',
-            'points' => 750
         ]);
         \App\Models\Activities::factory(5)->create();
         \App\Models\Activities::factory(2)->mainstage()->points500()->create();

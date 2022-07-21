@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('activity_log.mine')" :active="request()->routeIs('activity_log.mine')">
                         Logbook
                     </x-nav-link>
+                    <x-nav-link :href="route('teams')" :active="request()->routeIs('teams')">
+                        Teams
+                    </x-nav-link>
 
                     {{-- Admin routes --}}
                     @if ( Auth::user()->is_admin )

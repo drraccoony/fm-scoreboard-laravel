@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Create Team (Admin)
+            Edit Team: {{$team->name}} (Admin)
         </h2>
     </x-slot>
 
@@ -19,8 +19,9 @@
                                 </div>
                             </div>
                             <div class="mt-5 md:mt-0 md:col-span-2">
-                                <form action="#" method="POST">
+                                <form method="POST" action="{{route('teams.update',['team' => $team])}}">
                                     @csrf
+                                    @method('PUT')
                                     <div class="shadow overflow-hidden sm:rounded-md">
                                         <!-- Validation Errors -->
                                         <x-validation-errors class="mb-4" :errors="$errors" />
@@ -28,25 +29,37 @@
                                             <div class="grid grid-cols-6 gap-6">
                                                 <div class="col-span-6 sm:col-span-6">
                                                     <label for="name"
-                                                        class="block text-sm font-medium text-gray-700">Team Name</label>
-                                                    <input type="text" name="name" id="name"
+                                                        class="block text-sm font-medium text-gray-700" >Team Name</label>
+                                                    <input type="text" name="name" id="name" value="{{$team->name}}"
                                                         class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-2">
                                                     <label for="locked"
                                                         class="block text-sm font-medium text-gray-700">Team Color</label>
-                                                    <input class="mt-1 h-10 w-32 border border-gray-300 rounded-md shadow-sm" type="color" id="color" name="color" value="{{'#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT)}}" />
+                                                    <input class="mt-1 h-10 w-32 border border-gray-300 rounded-md shadow-sm" type="color" id="color" name="color" value="{{$team->color}}" />
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-2">
                                                     <label for="locked"
                                                         class="block text-sm font-medium text-gray-700">Locked</label>
-                                                    <select id="locked" name="locked"
+                                                    <select id="locked" name="locked" value="{{$team->locked}}"
                                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                                         <option value="0">Not Locked</option>
                                                         <option value="1">Locked</option>
                                                     </select>
+                                                </div>
+                                                <div class="col-span-6 sm:col-span-2">
+                                                </div>
+                                                <div class="col-span-6 sm:col-span-2">
+                                                    <label for=""
+                                                        class="block text-sm font-medium text-gray-700">Created</label>
+                                                    <div class="py-3">{{$team->created_at}}</div>
+                                                </div>
+                                                <div class="col-span-6 sm:col-span-2">
+                                                    <label for=""
+                                                        class="block text-sm font-medium text-gray-700">Owner</label>
+                                                    <div class="py-3">{{$team->owner->name}}</div>
                                                 </div>
                                             </div>
                                         </div>

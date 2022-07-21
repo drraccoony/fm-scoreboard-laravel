@@ -63,7 +63,7 @@
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                     <a href="#" class="text-green-600 hover:text-green-900 px-4">Join</a>
                                     @if (Auth::user()->is_admin) 
-                                        <a href="#" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
+                                        <a href="{{route('teams.edit',['team'=>$team])}}" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
                                         <a href="#" class="text-red-600 hover:text-red-900 px-4">Delete</a>
                                     @endif
                                 </td>

@@ -50,6 +50,10 @@ Route::middleware(['auth'])->group(function () {
         ->name('teams.create');
     Route::post('/teams/create', [TeamsController::class, 'store'])
         ->name('teams.store');
+    Route::get('/teams/{team}/edit', [TeamsController::class, 'edit'])
+        ->name('teams.edit');
+    Route::put('/teams/{team}/update', [TeamsController::class, 'update'])
+        ->name('teams.update');
 
 
 Route::get('/activities', [ActivitiesController::class, 'index'])

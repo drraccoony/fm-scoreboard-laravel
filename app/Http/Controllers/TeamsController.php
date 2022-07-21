@@ -36,11 +36,12 @@ class TeamsController extends Controller
         $request->validate([
             'name' => ['required','string'],
         ]);
-        $post = new Activities;
+        $post = new Team;
         $post->name = $request->name;
         $post->locked = $request->locked;
+        $post->color = $request->color;
         $post->save();
-        return redirect('activities');
+        return redirect('teams');
 
     }
 

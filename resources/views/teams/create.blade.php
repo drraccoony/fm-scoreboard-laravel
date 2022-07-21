@@ -33,13 +33,21 @@
                                                         class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
 
-                                                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                                                <div class="col-span-6 sm:col-span-2">
                                                     <label for="locked"
-                                                        class="block text-sm font-medium text-gray-700">Locked</label>
-                                                    <input type="checkbox" name="locked" id="locked"
-                                                        class="mt-1 focus:ring-grey-500 focus:border-grey-500 block shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                        class="block text-sm font-medium text-gray-700">Team Color</label>
+                                                    <input class="mt-1 h-10 w-32 border border-gray-300 rounded-md shadow-sm" type="color" id="color" name="color" value="{{'#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT)}}" />
                                                 </div>
 
+                                                <div class="col-span-6 sm:col-span-2">
+                                                    <label for="locked"
+                                                        class="block text-sm font-medium text-gray-700">Locked</label>
+                                                    <select id="locked" name="locked"
+                                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                                        <option value="0">Not Locked</option>
+                                                        <option value="1">Locked</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">

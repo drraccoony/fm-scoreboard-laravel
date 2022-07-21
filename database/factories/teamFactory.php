@@ -20,6 +20,7 @@ class TeamFactory extends Factory
         return [
             'name' => fake()->name(),
             'color' => fake()->hexcolor(),
+            'locked' => false
         ];
     }
 

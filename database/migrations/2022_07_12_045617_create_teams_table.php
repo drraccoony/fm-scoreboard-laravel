@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->integer('score')->default('0');
             $table->string('owner_id')->nullable();
+            $table->boolean('locked')->default(0);
+            $table->string('color')->default('0000FF');
             $table->softDeletes();
             $table->timestamps();
         });

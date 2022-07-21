@@ -16,4 +16,17 @@ class Team extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function player_count()
+    {
+        // TODO: Implement this functionailty
+        return -1;
+    }
+
+    public function total_score()
+    {
+        // TODO: Implement this functionailty
+        return -1;
+    }
+
 }

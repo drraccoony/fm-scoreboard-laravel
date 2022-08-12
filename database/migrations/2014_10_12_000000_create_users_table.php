@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreignId('team_id')->nullable();
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -37,3 +38,11 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
+
+Schema::table('users', function (Blueprint $table) {
+    $table->softDeletes();
+});
+ 
+Schema::table('users', function (Blueprint $table) {
+    $table->dropSoftDeletes();
+});

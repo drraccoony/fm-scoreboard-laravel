@@ -20,19 +20,33 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+/**
+ * Put all routes requiring authentication inside this group
+ */
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/activities', [ActivitiesController::class, 'index'])
-    ->middleware(['auth'])->name('activities');
-Route::get('/activities/create', [ActivitiesController::class, 'create'])
-    ->middleware(['auth'])->name('activities.create');
-Route::post('/activities/create', [ActivitiesController::class, 'store'])
-    ->middleware(['auth'])->name('activities.store');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/log/mine', [ActivityLogController::class, 'mine'])
-    ->middleware(['auth'])->name('activity_log.mine');
+    Route::get('/activities', [ActivitiesController::class, 'index'])
+        ->middleware(['auth'])->name('activities');
+        
+    Route::get('/activities/create', [ActivitiesController::class, 'create'])
+        ->middleware(['auth'])->name('activities.create');
+        
+    Route::post('/activities/create', [ActivitiesController::class, 'store'])
+        ->middleware(['auth'])->name('activities.store');
+
+    Route::get('/activities', [ActivitiesController::class, 'index'])
+        ->name('activities');
+
+    Route::get('/log/mine', [ActivityLogController::class, 'mine'])
+        ->name('activity_log.mine');
+
+    Route::get('/log/{activity}', [ActivityLogController::class, 'logActivity'])
+        ->name('activity_log.logActivity');
+});
 
 Route::get('/users', [UsersController::class, 'index'])
     ->middleware(['auth'])->name('users');
@@ -51,3 +65,4 @@ Route::get('/users/{id}/delete', [UsersController::class, 'delete'])
 // })->middleware(['auth'])->name('activities');
 
 require __DIR__.'/auth.php';
+

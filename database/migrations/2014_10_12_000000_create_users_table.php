@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreignId('team_id')->nullable();
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

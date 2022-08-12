@@ -76,6 +76,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Rico',
             'email' => 'drraccoony@gmail.com',
             'team_id' => 1,
+            'is_admin' => 1,
         ]);
     }
 }

@@ -16,8 +16,38 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/dashboard');
+
+/*
+|--------------------------------------------------------------------------
+| Auth User Routes
+|--------------------------------------------------------------------------
+|*/
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return redirect('/dashboard');
+    });
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/log/mine', [ActivityLogController::class, 'mine'])
+    ->name('activity_log.mine');
+});
+  
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|*/
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/activities', [ActivitiesController::class, 'index'])
+        ->name('activities');
+    Route::get('/activities/create', [ActivitiesController::class, 'create'])
+        ->name('activities.create');
+
 });
 
 /**

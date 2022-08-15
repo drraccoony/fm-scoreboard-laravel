@@ -4,21 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Activities;
 use App\Models\LoggedActivities;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ActivityLogController extends Controller
 {
-    public function mine(Request $request)
+    public function viewLog(Request $request)
     {
-        $activities = LoggedActivities::forUser(Auth::user())
+        $activities = LoggedActivities::forUser($request->user())
             ->get();
 
-        // $activities = logged_activities::query()
-        //     ->get();
+        return view('logbook.index')
+            ->with(compact('activities'));
+    }
 
-        return view('logbook.mine')
+    public function viewUserLog(Request $request, User $user)
+    {
+        if ($request->user()->cannot('viewUserLog', $user)) {
+            return redirect()->route('log');
+        }
+
+        $activities = LoggedActivities::forUser($user)
+            ->get();
+
+        return view('logbook.index')
             ->with(compact('activities'));
     }
 
@@ -54,10 +65,10 @@ class ActivityLogController extends Controller
                 $logActivity->team_id = $team->id;
                 $logActivity->activity_id = $activity->id;
                 $logActivity->save();
-            
-                Log::debug("Logged activity for -> Team: $team->id Activity: $activity->id User: ".Auth::id());
+
+                Log::debug("Logged activity for -> Team: $team->id Activity: $activity->id User: " . Auth::id());
             } else {
-                Log::debug("Activity already logged for -> Team: $team->id Activity: $activity->id User: ".Auth::id());
+                Log::debug("Activity already logged for -> Team: $team->id Activity: $activity->id User: " . Auth::id());
             }
         }
 

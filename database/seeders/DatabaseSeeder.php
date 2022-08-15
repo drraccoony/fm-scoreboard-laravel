@@ -77,5 +77,21 @@ class DatabaseSeeder extends Seeder
             'team_id' => 1,
             'is_admin' => 1,
         ]);
+
+        // Basic user for testing
+        \App\Models\User::factory()->create([
+            'name' => 'Basic User',
+            'email' => 'user@gmail.com',
+            'team_id' => 1,
+            'is_admin' => 0,
+        ]);
+
+        // Admin user for testing
+        \App\Models\User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@gmail.com',
+            'team_id' => 1,
+            'is_admin' => 1,
+        ]);
     }
 }

@@ -15,7 +15,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <ul>
                         <li>{{$user->name}} (Email: {{$user->email}}) <a href="{{route('users')}}" class="text-blue-700 pl-6 
-                           pr-4">Cancel</a><a href="{{route('user.delete',[$user->id])}}" class="text-red-500 pr-4">Delete</a> 
+                           pr-4">Cancel</a><a href="{{route('users.delete',[$user->id])}}" class="text-red-500 pr-4">Delete</a> 
                        </li>
                     </ul>
                 </div>

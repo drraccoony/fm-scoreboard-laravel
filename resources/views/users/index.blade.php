@@ -43,8 +43,8 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$user->email}}</td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$user->team->name}}</td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <a href="{{route('user.edit',[$user->id])}}" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
-                                    <a href="{{route('user.confirm',[$user->id])}}" class="text-red-600 hover:text-red-900 px-4">Delete</a>
+                                    <a href="{{route('users.edit',[$user->id])}}" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
+                                    <a href="{{route('users.confirm',[$user->id])}}" class="text-red-600 hover:text-red-900 px-4">Delete</a>
                                 </td>
                                 </tr>
                                 @endforeach

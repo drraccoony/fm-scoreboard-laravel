@@ -38,7 +38,29 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/teams', [TeamsController::class, 'index'])
         ->name('teams');
+
+    Route::get('/activities/create', [ActivitiesController::class, 'create'])
+        ->name('activities.create');
+    Route::post('/activities/create', [ActivitiesController::class, 'store'])
+        ->name('activities.store');
+
+    Route::get('/activities', [ActivitiesController::class, 'index'])
+        ->name('activities');
+    Route::get('/activities', [ActivitiesController::class, 'index'])
+        ->name('activities');
+    Route::get('/log/mine', [ActivityLogController::class, 'mine'])
+        ->name('activity_log.mine');
+    Route::get('/log/{activity}', [ActivityLogController::class, 'logActivity'])
+        ->name('activity_log.logActivity');
 });
+
+  
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|*/
+Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/activities', [ActivitiesController::class, 'index'])
         ->name('activities');
@@ -46,6 +68,15 @@ Route::middleware(['auth'])->group(function () {
         ->name('activities.create');
     Route::post('/activities/create', [ActivitiesController::class, 'store'])
         ->name('activities.store');
+
+    Route::get('/users', [UsersController::class, 'index'])
+        ->name('users');
+    Route::get('/users/{id}/edit', [UsersController::class, 'edit'])
+        ->name('user.edit');
+    Route::get('/users/{id}/confirm', [UsersController::class, 'confirm'])
+        ->name('user.confirm')->withTrashed();
+    Route::get('/users/{id}/delete', [UsersController::class, 'delete'])
+        ->name('user.delete');
 
     Route::get('/teams/create', [TeamsController::class, 'create'])
         ->name('teams.create');
@@ -56,31 +87,12 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/teams/{team}/update', [TeamsController::class, 'update'])
         ->name('teams.update');
 
+});
 
-Route::get('/activities', [ActivitiesController::class, 'index'])
-    ->middleware(['auth'])->name('activities');
-Route::get('/activities/create', [ActivitiesController::class, 'create'])
-    ->middleware(['auth'])->name('activities.create');
-Route::post('/activities/create', [ActivitiesController::class, 'store'])
-    ->middleware(['auth'])->name('activities.store');
-
-Route::get('/log/mine', [ActivityLogController::class, 'mine'])
-    ->middleware(['auth'])->name('activity_log.mine');
-
-Route::get('/users', [UsersController::class, 'index'])
-    ->middleware(['auth'])->name('users');
-
-Route::get('/users/{id}/edit', [UsersController::class, 'edit'])
-    ->middleware(['auth'])->name('user.edit');
-
-Route::get('/users/{id}/confirm', [UsersController::class, 'confirm'])
-    ->middleware(['auth'])->name('user.confirm')->withTrashed();
-
-Route::get('/users/{id}/delete', [UsersController::class, 'delete'])
-    ->middleware(['auth'])->name('user.delete');
 
 // Route::get('/activities', function () {
 //     return view('activities.index');
 // })->middleware(['auth'])->name('activities');
 
 require __DIR__.'/auth.php';
+

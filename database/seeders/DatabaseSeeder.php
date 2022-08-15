@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -46,17 +45,17 @@ class DatabaseSeeder extends Seeder
         \App\Models\Activities::factory(2)->mainstage()->points500()->create();
 
         // Create some activity logs...
-        \App\Models\logged_activities::factory()->create([
+        \App\Models\LoggedActivities::factory()->create([
             'activity_id' => 1,
             'user_id' => 8,
             'team_id' => 2,
         ]);
-        \App\Models\logged_activities::factory(3)->create([
+        \App\Models\LoggedActivities::factory(3)->create([
             'activity_id' => 2,
             'user_id' => 8,
             'team_id' => 1,
         ]);
-        \App\Models\logged_activities::factory()->create([
+        \App\Models\LoggedActivities::factory()->create([
             'activity_id' => 3,
             'user_id' => 8,
             'team_id' => 1,

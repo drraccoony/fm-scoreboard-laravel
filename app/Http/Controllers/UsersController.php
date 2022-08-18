@@ -20,10 +20,18 @@ class UsersController extends Controller
             ->with(compact('user'));
     }
 
-    public function edit(Request $request, User $user)
+    public function edit(Request $request)
+    {
+        $user = $request->user();
+        
+        return view('users.edit')
+            ->with(compact('user'));
+    }
+
+    public function editUser(Request $request, User $user)
     {
         if ($request->user()->cannot('update', $user)) {
-            return redirect()->route('user.edit', [$request->user->id]);
+            return redirect()->route('user.edit');
         }
 
         return view('users.edit')

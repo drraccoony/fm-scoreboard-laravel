@@ -12,7 +12,7 @@
                     <p>Editing: {{$user->name}}</p>
                     <p>Email: {{$user->email}}</p>
                     <p>Badge Number: {{$user->badge_number}}</p>
-                    {{-- <p>Team: {{$user->team->name}}</p> --}}
+                    <p>Team: {{$user->team ? $user->team->name : "None"}}</p>
                     <p>Created: {{$user->created_at}}</p>
                     <p>Updated: {{$user->updated_at}}</p>
                     @if ($user->is_admin == 0)

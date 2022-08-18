@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
                 ->name('.activity');
         });
 
-    Route::get('/users/{user}/edit', [UsersController::class, 'edit'])
+    Route::get('/profile', [UsersController::class, 'edit'])
         ->name('users.edit');
 
     Route::get('/teams', [TeamsController::class, 'index'])
@@ -76,6 +76,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
         ->name('users')
         ->group(function () {
             Route::get('/users', 'index');
+            Route::get('/users/{user}/edit', 'editUser')
+                ->name('.editUser');
             Route::get('/users/{user}/confirm', 'confirm')
                 ->name('.confirm')
                 ->withTrashed();

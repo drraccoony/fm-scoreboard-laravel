@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\activities;
+use App\Models\Activities;
 
 class ActivitiesController extends Controller
 {
@@ -13,7 +13,7 @@ class ActivitiesController extends Controller
             return abort(403);
         }
 
-        $activities = activities::query()
+        $activities = Activities::query()
             ->get();
 
         return view('activities.index')

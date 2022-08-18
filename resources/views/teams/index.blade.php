@@ -14,7 +14,7 @@
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <h1 class="text-xl font-semibold text-gray-900">Your Current Team: <span class="text-blue-600 font-bold">{{Auth::user()->team->name}}</span></h1>
+                            <h1 class="text-xl font-semibold text-gray-900">Your Current Team: <span class="text-blue-600 font-bold">{{Auth::user()->team ? Auth::user()->team->name : "None"}}</span></h1>
                             <p class="mt-2 text-sm text-gray-600">If you want to change teams, you may choose from the available teams below</p>
                         </div>
                     </div>

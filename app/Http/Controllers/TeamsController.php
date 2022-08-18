@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\activities;
-use App\Models\team;
+use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
 
 class TeamsController extends Controller
 {
     public function index(Request $request)
     {
-        $teams = team::query()
+        $teams = Team::query()
             ->get();
 
         return view('teams.index')

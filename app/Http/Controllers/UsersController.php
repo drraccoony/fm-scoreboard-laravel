@@ -9,42 +9,58 @@ class UsersController extends Controller
 {
     public function index(Request $request)
     {
+        if ($request->user()->cannot('viewAny', User::class)) {
+            return abort(403);
+        }
+
         $user = user::query()
             ->get();
 
         return view('users.index')
             ->with(compact('user'));
     }
-    
-    public function edit(user $id)
+
+    public function edit(Request $request)
     {
-        $user = user::find($id)
-            ->first();
-            
+        $user = $request->user();
+        
         return view('users.edit')
             ->with(compact('user'));
     }
-    
-    public function confirm(user $id)
+
+    public function editUser(Request $request, User $user)
     {
-        $user = user::find($id)
-            ->first();
+        if ($request->user()->cannot('update', $user)) {
+            return redirect()->route('user.edit');
+        }
+
+        return view('users.edit')
+            ->with(compact('user'));
+    }
+
+    public function confirm(Request $request, User $user)
+    {
+        if (
+            ($request->user()->id === $user->id)
+            || $request->user()->cannot('delete', $user)
+        ) {
+            return redirect()->route('users');
+        }
 
         return view('users.confirm')
             ->with(compact('user'));
     }
 
-    public function delete(user $id)
+    public function delete(Request $request, User $user)
     {
-        user::find($id)
-            ->first()
-            ->delete();
+        // Admins can't delete their own account
+        if (
+            !($request->user()->id === $user->id)
+            && $request->user()->can('delete', User::class)
+        ) {
+            $user->delete();
+        }
 
-        $user = user::query()
-            ->get();
-
-        return view('users.index')
-            ->with(compact('user'));
+        return redirect()->route('users');
     }
-
 }

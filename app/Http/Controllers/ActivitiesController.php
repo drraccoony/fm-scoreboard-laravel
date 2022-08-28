@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\activities;
+use App\Models\Activities;
 
 class ActivitiesController extends Controller
 {
     public function index(Request $request)
     {
-        $activities = activities::query()
+        if ($request->user()->cannot('viewAny', Activities::class)) {
+            return abort(403);
+        }
+
+        $activities = Activities::query()
             ->get();
 
         return view('activities.index')
@@ -18,6 +22,9 @@ class ActivitiesController extends Controller
 
     public function create(Request $request)
     {
+        if ($request->user()->cannot('create', Activities::class)) {
+            return abort(403);
+        }
 
         return view('activities.create', $request)
             ->with(compact('request'));
@@ -31,7 +38,10 @@ class ActivitiesController extends Controller
      */
     public function store(Request $request)
     {
-
+        if ($request->user()->cannot('store', Activities::class)) {
+            return abort(403);
+        }
+        
         $request->validate([
             'name' => ['required','string'],
             'points' => ['required','integer'],

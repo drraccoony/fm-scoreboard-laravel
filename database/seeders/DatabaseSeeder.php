@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Models\Activities;
 use App\Models\LoggedActivities;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Guid\Guid;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $defaultPassword = 'password';
 
         if (getenv("APP_ENV") === 'production') {
             // Create basic team
@@ -43,6 +45,7 @@ class DatabaseSeeder extends Seeder
             $user->email = 'root@notAGmail.com';
             $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
             $user->is_admin = true;
+            $user->password_reset = true;
             $user->save();
         } else if (getenv("APP_ENV") === 'stage') {
             // Create basic team
@@ -66,8 +69,9 @@ class DatabaseSeeder extends Seeder
             $user->id = 1;
             $user->name = 'Root';
             $user->email = 'root@notAGmail.com';
-            $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+            $user->password = Hash::make($defaultPassword);
             $user->is_admin = true;
+            $user->password_reset = true;
             $user->save();
         } else {
             // Create some teams...

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('badge_number')->nullable();
             $table->boolean('is_admin')->default(false);
+            $table->boolean('password_reset')->default(false);
             $table->string('password');
             $table->foreignId('team_id')->nullable();
             $table->rememberToken();

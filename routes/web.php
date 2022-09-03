@@ -24,79 +24,80 @@ use App\Http\Controllers\UsersController;
 |--------------------------------------------------------------------------
 |*/
 
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return redirect('/dashboard');
-    });
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    Route::get('/activities', [ActivitiesController::class, 'index'])
-        ->name('activities');
-
-    Route::controller(ActivityLogController::class)
-        ->name('log')
-        ->group(function () {
-            Route::get('/log', 'viewLog');
-            Route::get('/log/{activity}', 'logActivity')
-                ->name('.activity');
+Route::middleware(['forceChangePassword'])->group(function () {
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/', function () {
+            return redirect('/dashboard');
         });
 
-    Route::get('/profile', [UsersController::class, 'edit'])
-        ->name('users.edit');
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
 
-    Route::get('/teams', [TeamsController::class, 'index'])
-        ->name('teams');
-});
+        Route::get('/activities', [ActivitiesController::class, 'index'])
+            ->name('activities');
+
+        Route::controller(ActivityLogController::class)
+            ->name('log')
+            ->group(function () {
+                Route::get('/log', 'viewLog');
+                Route::get('/log/{activity}', 'logActivity')
+                    ->name('.activity');
+            });
+
+        Route::get('/profile', [UsersController::class, 'edit'])
+            ->name('users.edit');
+
+        Route::get('/teams', [TeamsController::class, 'index'])
+            ->name('teams');
+    });
 
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | Admin Routes
 |--------------------------------------------------------------------------
 |*/
-Route::middleware(['auth', 'admin'])->group(function () {
+    Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::controller(ActivitiesController::class)
-        ->name('activities')
-        ->group(function () {
-            Route::get('/activities/create', 'create')
-                ->name('.create');
-            Route::post('/activities/create', 'store')
-                ->name('.store');
-        });
+        Route::controller(ActivitiesController::class)
+            ->name('activities')
+            ->group(function () {
+                Route::get('/activities/create', 'create')
+                    ->name('.create');
+                Route::post('/activities/create', 'store')
+                    ->name('.store');
+            });
 
-    Route::get('/users/{user}/log', [ActivityLogController::class, 'viewUserLog'])
-        ->name('users.log');
+        Route::get('/users/{user}/log', [ActivityLogController::class, 'viewUserLog'])
+            ->name('users.log');
 
-    Route::controller(UsersController::class)
-        ->name('users')
-        ->group(function () {
-            Route::get('/users', 'index');
-            Route::get('/users/{user}/edit', 'editUser')
-                ->name('.editUser');
-            Route::get('/users/{user}/confirm', 'confirm')
-                ->name('.confirm')
-                ->withTrashed();
-            Route::get('/users/{user}/delete', 'delete')
-                ->name('.delete');
-        });
+        Route::controller(UsersController::class)
+            ->name('users')
+            ->group(function () {
+                Route::get('/users', 'index');
+                Route::get('/users/{user}/edit', 'editUser')
+                    ->name('.editUser');
+                Route::get('/users/{user}/confirm', 'confirm')
+                    ->name('.confirm')
+                    ->withTrashed();
+                Route::get('/users/{user}/delete', 'delete')
+                    ->name('.delete');
+            });
 
-    Route::controller(TeamsController::class)
-        ->name('teams')
-        ->group(function () {
-            Route::get('/teams/create', 'create')
-                ->name('.create');
-            Route::post('/teams/create', 'store')
-                ->name('.store');
-            Route::get('/teams/{team}/edit', 'edit')
-                ->name('.edit');
-            Route::put('/teams/{team}/update', 'update')
-                ->name('.update');
-        });
+        Route::controller(TeamsController::class)
+            ->name('teams')
+            ->group(function () {
+                Route::get('/teams/create', 'create')
+                    ->name('.create');
+                Route::post('/teams/create', 'store')
+                    ->name('.store');
+                Route::get('/teams/{team}/edit', 'edit')
+                    ->name('.edit');
+                Route::put('/teams/{team}/update', 'update')
+                    ->name('.update');
+            });
+    });
 });
 
 // Route::get('/activities', function () {

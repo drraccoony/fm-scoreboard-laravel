@@ -13,11 +13,11 @@ class UsersController extends Controller
             return abort(403);
         }
 
-        $user = user::query()
+        $users = User::query()
             ->get();
 
         return view('users.index')
-            ->with(compact('user'));
+            ->with(compact('users'));
     }
 
     public function edit(Request $request)

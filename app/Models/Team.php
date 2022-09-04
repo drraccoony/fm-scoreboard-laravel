@@ -9,6 +9,18 @@ class Team extends Model
 {
     use HasFactory;
 
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'locked',
+        'color',
+        'owner_id'
+    ];
+
     /**
      * Create the owner relationship lookup
      */

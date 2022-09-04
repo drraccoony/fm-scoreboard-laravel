@@ -135,8 +135,9 @@ class DatabaseSeeder extends Seeder
             User::factory()->create([
                 'name' => 'Rico',
                 'email' => 'drraccoony@gmail.com',
-                'team_id' => 1,
+                'team_id' => null,
                 'is_admin' => 1,
+                'password_reset' => false,
             ]);
 
             // Basic user for testing

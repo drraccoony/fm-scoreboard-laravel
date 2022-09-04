@@ -71,7 +71,7 @@ class TeamsController extends Controller
             'name' => ['required','string'],
         ]);
 
-        // $team->update($request->all());
+        $team->update($request->all());
 
         return redirect()
             ->route('teams');

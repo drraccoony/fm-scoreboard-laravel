@@ -52,7 +52,7 @@
                                             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                         </div> --}}
 
-                                                <div class="col-span-6 sm:col-span-3">
+                                                <div class="col-span-6 sm:col-span-2">
                                                     <label for="type"
                                                         class="block text-sm font-medium text-gray-700">Activity
                                                         Type</label>
@@ -67,10 +67,18 @@
                                                     </select>
                                                 </div>
 
-                                                {{-- <div class="col-span-6">
-                                            <label for="street-address" class="block text-sm font-medium text-gray-700">Street address</label>
-                                            <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                        </div> --}}
+                                                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                                                    <label for="guid" class="block text-sm font-medium text-gray-700">GUID</label>
+                                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                                        <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" />
+                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z" />
+                                                            </svg>
+                                                            </span>
+                                                        <input type="text" disabled value="Generated on save" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 bg-gray-200 text-gray-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                                     <label for="points"
@@ -97,7 +105,7 @@
                                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                             <button type="submit"
                                                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Save</button>
-                                                <a href="#" class="text-blue-600 hover:text-blue-700 px-4">Cancel</a>
+                                                <a href="{{route('activities')}}" class="text-blue-600 hover:text-blue-700 px-4">Cancel</a>
                                         </div>
                                     </div>
                                 </form>

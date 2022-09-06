@@ -61,7 +61,11 @@
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$team->player_count()}}</td>
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$team->total_score()}}</td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <a href="#" class="text-green-600 hover:text-green-900 px-4">Join</a>
+                                    @if (Auth::user()->team_id == $team->id)
+                                        <span class="text-gray-300 px-4">Selected</span>
+                                    @else
+                                        <a href="#" class="text-green-600 hover:text-green-900 px-4">Join</a>
+                                    @endif
                                     @if (Auth::user()->is_admin) 
                                         <a href="{{route('teams.edit',['team'=>$team])}}" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
                                         <a href="#" class="text-red-600 hover:text-red-900 px-4">Delete</a>

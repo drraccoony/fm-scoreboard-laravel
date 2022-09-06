@@ -73,4 +73,48 @@ class ActivitiesController extends Controller
         //     // ->with('notification', "Show $activities->name Created! Once approved by an administrator you can add episodes.");
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Activities  $activity
+     * @return \Illuminate\Http\Response
+     */
+    public function view(Activities $activity)
+    {
+        return view('activities.view')
+            ->with(compact('activity'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Activities  $activity
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Activities $activity)
+    {
+        return view('activities.edit')
+            ->with(compact('activity'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Activities  $activity
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Activities $activity)
+    {
+        $request->validate([
+            'name' => ['required','string'],
+            // 'guid' => ['unique:activities,guid']
+        ]);
+
+        $activity->update($request->all());
+
+        return redirect()
+            ->route('activities');
+    }
+
 }

@@ -41,11 +41,11 @@
                             <tbody class="divide-y divide-gray-200 bg-white">
                                 @foreach($activities as $activity)
                                 <tr>
-                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$activity->name}}</td>
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="{{route('activities.view',['activity'=>$activity])}}" class="text-blue-600 hover:text-blue-900 px-4">{{$activity->name}}</a></td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$activity->type}}</td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$activity->points}}</td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <a href="#" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
+                                    <a href="{{route('activities.edit',['activity'=>$activity])}}" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
                                     <a href="#" class="text-red-600 hover:text-red-900 px-4">Delete</a>
                                 </td>
                                 </tr>

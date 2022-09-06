@@ -67,6 +67,12 @@ Route::middleware(['forceChangePassword'])->group(function () {
                     ->name('.create');
                 Route::post('/activities/create', 'store')
                     ->name('.store');
+                Route::get('/activities/{activity}/view', 'view')
+                    ->name('.view');
+                Route::get('/activities/{activity}/edit', 'edit')
+                    ->name('.edit');
+                Route::put('/activities/{activity}/update', 'update')
+                    ->name('.update');
             });
 
         Route::get('/users/{user}/log', [ActivityLogController::class, 'viewUserLog'])

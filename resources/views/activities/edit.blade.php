@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Create Activity (Admin)
+            Edit Activity (Admin)
         </h2>
     </x-slot>
 
@@ -23,8 +23,9 @@
                                 </div>
                             </div>
                             <div class="mt-5 md:mt-0 md:col-span-2">
-                                <form action="#" method="POST">
+                                <form method="POST" action="{{route('activities.update',['activity' => $activity])}}">
                                     @csrf
+                                    @method('PUT')
                                     <div class="shadow overflow-hidden sm:rounded-md">
                                         <!-- Validation Errors -->
                                         <x-validation-errors class="mb-4" :errors="$errors" />
@@ -36,7 +37,8 @@
                                                         Name</label>
                                                     <input type="text" name="name" id="name"
                                                         autocomplete="given-name"
-                                                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        value="{{$activity->name}}">
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-6">
@@ -44,7 +46,7 @@
                                                         class="block text-sm font-medium text-gray-700">Short
                                                         Description</label>
                                                     <textarea type="text" name="description" id="description"
-                                                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{$activity->description}}</textarea>
                                                 </div>
 
                                                 {{-- <div class="col-span-6 sm:col-span-4">
@@ -52,11 +54,11 @@
                                             <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                         </div> --}}
 
-                                                <div class="col-span-6 sm:col-span-2">
+                                                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                                     <label for="type"
                                                         class="block text-sm font-medium text-gray-700">Activity
                                                         Type</label>
-                                                    <select id="type" name="type" autocomplete="country-name"
+                                                    <select id="type" name="type"
                                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                                         <option>Panel</option>
                                                         <option value="Mainstage">Main Stage</option>
@@ -76,14 +78,14 @@
                                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z" />
                                                             </svg>
                                                             </span>
-                                                        <input type="text" disabled value="Generated on save" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 bg-gray-200 text-gray-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                        <input type="text" name="guid" id="guid" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$activity->guid}}">
                                                     </div>
                                                 </div>
-
+                                                
                                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                                     <label for="points"
                                                         class="block text-sm font-medium text-gray-700">Points</label>
-                                                    <input type="text" name="points" id="points" value="250"
+                                                    <input type="text" name="points" id="points" value="{{$activity->points}}"
                                                         class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
 
@@ -91,14 +93,16 @@
                                                     <label for="starts_at"
                                                         class="block text-sm font-medium text-gray-700">Start</label>
                                                     <input type="datetime-local" name="starts_at" id="starts_at"
-                                                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        value="{{$activity->starts_at}}">
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                                     <label for="ends_at"
                                                         class="block text-sm font-medium text-gray-700">End</label>
                                                     <input type="datetime-local" name="ends_at" id="ends_at"
-                                                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        value="{{$activity->ends_at}}">
                                                 </div>
                                             </div>
                                         </div>

@@ -13,7 +13,7 @@
                 </div> --}}
 
 
-
+                
                 <!-- This example requires Tailwind CSS v2.0+ -->
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
@@ -28,7 +28,10 @@
                     <div class="mt-8 flex flex-col">
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                            <div class="pb-4">
+                                {{ $activities->links() }}
+                            </div>
+                            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-300">
                             <thead class="bg-gray-50">
                                 <tr>
@@ -39,19 +42,28 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
+                                @if($activities->isEmpty())
+                                    <tr>
+                                        <td class="whitespace-nowrap text-center py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6" colspan="100%"><span class="font-semibold">No activities created.</span><br>
+                                        It might be worth <a href="{{route('activities.create')}}" class="text-blue-600">creating an activity</a>.</td>
+                                    </tr>
+                                @endif
                                 @foreach($activities as $activity)
                                 <tr>
-                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$activity->name}}</td>
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="{{route('activities.view',['activity'=>$activity])}}" class="text-blue-600 hover:text-blue-900 px-4">{{$activity->name}}</a></td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$activity->type}}</td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$activity->points}}</td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <a href="#" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
+                                    <a href="{{route('activities.edit',['activity'=>$activity])}}" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
                                     <a href="#" class="text-red-600 hover:text-red-900 px-4">Delete</a>
                                 </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             </table>
+                        </div>
+                        <div class="pt-4">
+                            {{ $activities->links() }}
                         </div>
                         </div>
                     </div>

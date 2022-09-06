@@ -89,6 +89,8 @@ Route::middleware(['forceChangePassword'])->group(function () {
                     ->withTrashed();
                 Route::get('/users/{user}/delete', 'delete')
                     ->name('.delete');
+                Route::put('/users/{user}/update', 'update')
+                    ->name('.update');
             });
 
         Route::controller(TeamsController::class)

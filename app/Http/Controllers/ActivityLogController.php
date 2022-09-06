@@ -14,7 +14,7 @@ class ActivityLogController extends Controller
     public function viewLog(Request $request)
     {
         $activities = LoggedActivities::forUser($request->user())
-            ->get();
+            ->paginate(30);
 
         return view('logbook.index')
             ->with(compact('activities'));

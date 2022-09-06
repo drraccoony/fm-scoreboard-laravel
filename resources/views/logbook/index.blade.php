@@ -15,7 +15,9 @@
                 now! Keep earning
                 points for your team!
             </p>
-
+            <div class="pb-4">
+                {{ $activities->links() }}
+            </div>
             <div class="overflow-x-auto relative">
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -59,6 +61,9 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="py-4">
+                {{ $activities->links() }}
             </div>
         </x-simple-body>
     </x-slot>

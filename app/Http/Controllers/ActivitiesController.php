@@ -14,7 +14,7 @@ class ActivitiesController extends Controller
         }
 
         $activities = Activities::query()
-            ->get();
+            ->paginate(30);
 
         return view('activities.index')
             ->with(compact('activities'));

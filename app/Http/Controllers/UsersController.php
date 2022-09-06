@@ -15,7 +15,7 @@ class UsersController extends Controller
         }
 
         $users = User::query()
-            ->get();
+            ->paginate(30);
 
         return view('users.index')
             ->with(compact('users'));

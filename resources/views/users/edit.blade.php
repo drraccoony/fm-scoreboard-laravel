@@ -21,7 +21,7 @@
                         <p>Status: Admin</p>
                     @endif
                 </div>
-                
+                 
             </div>
         </div>
     </div>

@@ -113,6 +113,8 @@ class ActivitiesController extends Controller
 
         $activity->update($request->all());
 
+        notify()->success('Activity Updated!');
+
         return redirect()
             ->route('activities');
     }

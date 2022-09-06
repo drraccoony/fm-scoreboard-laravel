@@ -54,6 +54,12 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
+                                @if($teams->isEmpty())
+                                    <tr>
+                                        <td class="whitespace-nowrap text-center py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6" colspan="100%"><span class="font-semibold">No teams exist to join.</span><br>
+                                        <span class="text-gray-400">An application administrator should create some teams for you to join.</span></td>
+                                    </tr>
+                                @endif
                                 @foreach($teams as $team)
                                 <tr>
                                 <td class="whitespace-nowrap text-sm font-medium text-gray-900 sm:pl-3" style="background-color:{{$team->color}};" title="{{$team->color}}"></td>

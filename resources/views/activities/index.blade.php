@@ -42,6 +42,12 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
+                                @if($activities->isEmpty())
+                                    <tr>
+                                        <td class="whitespace-nowrap text-center py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6" colspan="100%"><span class="font-semibold">No activities created.</span><br>
+                                        It might be worth <a href="{{route('activities.create')}}" class="text-blue-600">creating an activity</a>.</td>
+                                    </tr>
+                                @endif
                                 @foreach($activities as $activity)
                                 <tr>
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$activity->name}}</td>

@@ -38,9 +38,9 @@
         </main>
     </div>
     {{-- @include('notify::messages') --}}
-        // Laravel 7 or greater
+        {{-- // Laravel 7 or greater
         <x:notify-messages />
-        @notifyJs
+        @notifyJs --}}
 </body>
 
 </html>

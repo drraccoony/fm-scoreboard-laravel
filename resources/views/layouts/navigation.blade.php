@@ -60,13 +60,6 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
-                        @if ( Auth::user()->is_admin )
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                    this.closest('form').submit();">
-                                Admin: View Activities
-                            </x-dropdown-link>
-                        @endif
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -89,6 +82,20 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('log')" :active="request()->routeIs('log')">
+                {{ __('Logbook') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('teams')" :active="request()->routeIs('teams')">
+                {{ __('Teams') }}
+            </x-responsive-nav-link>
+            @if (Auth::user()->is_admin)
+                <x-responsive-nav-link :href="route('activities')" :active="request()->routeIs('activities')">
+                    {{ __('Activities') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                    {{ __('Users') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

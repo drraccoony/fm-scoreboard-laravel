@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\ActivityLogController;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\UsersController;
 
@@ -17,6 +18,14 @@ use App\Http\Controllers\UsersController;
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| Welcome Route
+|--------------------------------------------------------------------------
+|*/
+
+Route::get('welcome', [GeneralController::class, 'welcome'])
+    ->name('welcome');
 
 /*
 |--------------------------------------------------------------------------

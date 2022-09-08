@@ -154,6 +154,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'team_id' => 1,
                 'is_admin' => 1,
+                'password_reset' => false,
             ]);
         }
     }

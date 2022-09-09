@@ -65,6 +65,8 @@
                                 <tr>
                                 <td class="whitespace-nowrap text-sm font-medium text-gray-900 sm:pl-3" style="background-color:{{$team->color}};" title="{{$team->color}}"></td>
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$team->name}}</td>
+                                {{-- <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$team->player_count($team->id)}}</td> --}}
+                                
                                 @if(Auth::user()->is_admin)
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$team->points ? $team->points : 0}}</td>
                                 @endif

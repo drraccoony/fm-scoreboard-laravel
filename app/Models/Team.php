@@ -4,6 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
+use App\Models\User;
+use App\Models\Activities;
+use App\Models\LoggedActivities;
 
 class Team extends Model
 {
@@ -29,16 +34,16 @@ class Team extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function player_count()
+    public function player_count($id)
     {
-        // TODO: Implement this functionailty
-        return -1;
+        return User::where('team_id', '=', $id)->get()->count();
     }
 
-    public function total_score()
+    public function total_score($id)
     {
-        // TODO: Implement this functionailty
-        return -1;
+        return 'Unknown';
+        // $number = LoggedActivities::where('team_id', '=', $id)->get();
+        // return $number->count();
     }
 
 }

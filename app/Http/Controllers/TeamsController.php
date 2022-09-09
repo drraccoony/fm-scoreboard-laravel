@@ -65,6 +65,19 @@ class TeamsController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Show  $show
+     * @return \Illuminate\Http\Response
+     */
+    public function join(Team $team)
+    {
+        // Auth::user()->update(['the_field' => $theField]);
+        
+        return redirect('/teams');
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

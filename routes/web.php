@@ -50,6 +50,13 @@ Route::middleware(['forceChangePassword'])->group(function () {
 
         Route::get('/teams', [TeamsController::class, 'index'])
             ->name('teams');
+
+        Route::controller(TeamsController::class)
+            ->name('teams')
+            ->group(function () {
+                Route::put('/teams/{team}/join', 'join')
+                    ->name('.join');
+            });
     });
 
 

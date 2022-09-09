@@ -74,7 +74,7 @@
                                     @if (Auth::user()->team_id == $team->id)
                                         <span class="text-gray-300 px-4">Selected</span>
                                     @else
-                                        <a href="#" class="text-green-600 hover:text-green-900 px-4">Join</a>
+                                        <a href="{{route('teams.join',['team'=>$team->id])}}" class="text-green-600 hover:text-green-900 px-4">Join</a>
                                     @endif
                                     @if (Auth::user()->is_admin) 
                                         <a href="{{route('teams.edit',['team'=>$team->id])}}" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>

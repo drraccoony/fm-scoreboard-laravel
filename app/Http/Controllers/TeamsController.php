@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class TeamsController extends Controller
 {
     public function index(Request $request)
     {
+
+
+        try {
         $teams = DB::table('teams')
         ->leftJoin('logged_activities', 'teams.id', '=', 'logged_activities.team_id')
         ->leftJoin('activities', 'activities.id', '=', 'logged_activities.activity_id')
@@ -18,6 +24,10 @@ class TeamsController extends Controller
         ->groupBy('teams.id')
         ->orderBy('points', 'desc')
         ->get();
+        } catch (Throwable $e) {
+            Log::error("Error getting Teams data: ".$e->getMessage(), $e->getTrace());
+            $teams = new Collection();
+        }
 
         return view('teams.index')
             ->with(compact('teams'));

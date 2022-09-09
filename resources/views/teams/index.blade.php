@@ -48,22 +48,36 @@
                                 <tr>
                                     <th scope="col" class="text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-2"></th>
                                     <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Name</th>
-                                    <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Players</th>
+                                    @if (Auth::user()->is_admin)
                                     <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">Total Score</th>
+                                    @endif
                                     <th scope="col" class="relative py-3 pl-3 pr-4 sm:pr-6"></th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
+                                @if($teams->isEmpty())
+                                    <tr>
+                                        <td class="whitespace-nowrap text-center py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6" colspan="100%"><span class="font-semibold">No teams exist to join.</span><br>
+                                        <span class="text-gray-400">An application administrator should create some teams for you to join.</span></td>
+                                    </tr>
+                                @endif
                                 @foreach($teams as $team)
                                 <tr>
                                 <td class="whitespace-nowrap text-sm font-medium text-gray-900 sm:pl-3" style="background-color:{{$team->color}};" title="{{$team->color}}"></td>
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$team->name}}</td>
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$team->player_count($team->id)}}</td>
-                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$team->total_score($team->id)}}</td>
+                                
+                                @if(Auth::user()->is_admin)
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$team->points ? $team->points : 0}}</td>
+                                @endif
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <a href="#" class="text-green-600 hover:text-green-900 px-4">Join</a>
+                                    @if (Auth::user()->team_id == $team->id)
+                                        <span class="text-gray-300 px-4">Selected</span>
+                                    @else
+                                        <a href="#" class="text-green-600 hover:text-green-900 px-4">Join</a>
+                                    @endif
                                     @if (Auth::user()->is_admin) 
-                                        <a href="{{route('teams.edit',['team'=>$team])}}" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
+                                        <a href="{{route('teams.edit',['team'=>$team->id])}}" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>
                                         <a href="#" class="text-red-600 hover:text-red-900 px-4">Delete</a>
                                     @endif
                                 </td>

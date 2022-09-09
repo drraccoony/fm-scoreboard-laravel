@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TeamsController extends Controller
 {
     public function index(Request $request)
     {
-        $teams = Team::query()
-            ->get();
+        $teams = DB::table('teams')
+        ->leftJoin('logged_activities', 'teams.id', '=', 'logged_activities.team_id')
+        ->leftJoin('activities', 'activities.id', '=', 'logged_activities.activity_id')
+        ->selectRaw('teams.id, teams.name, teams.color, sum(activities.points) as points')
+        ->groupBy('teams.id')
+        ->orderBy('points', 'desc')
+        ->get();
 
         return view('teams.index')
             ->with(compact('teams'));
@@ -71,7 +77,7 @@ class TeamsController extends Controller
             'name' => ['required','string'],
         ]);
 
-        // $team->update($request->all());
+        $team->update($request->all());
 
         return redirect()
             ->route('teams');

@@ -19,5 +19,6 @@ class Activities extends Model
         'token',
         'name',
         'guid',
+        'type'
     ];
 }

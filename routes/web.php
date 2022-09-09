@@ -67,6 +67,12 @@ Route::middleware(['forceChangePassword'])->group(function () {
                     ->name('.create');
                 Route::post('/activities/create', 'store')
                     ->name('.store');
+                Route::get('/activities/{activity}/view', 'view')
+                    ->name('.view');
+                Route::get('/activities/{activity}/edit', 'edit')
+                    ->name('.edit');
+                Route::put('/activities/{activity}/update', 'update')
+                    ->name('.update');
             });
 
         Route::get('/users/{user}/log', [ActivityLogController::class, 'viewUserLog'])
@@ -83,6 +89,8 @@ Route::middleware(['forceChangePassword'])->group(function () {
                     ->withTrashed();
                 Route::get('/users/{user}/delete', 'delete')
                     ->name('.delete');
+                Route::put('/users/{user}/update', 'update')
+                    ->name('.update');
             });
 
         Route::controller(TeamsController::class)

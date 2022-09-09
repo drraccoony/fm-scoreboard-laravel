@@ -94,9 +94,11 @@
                     </div>
                 </div>
             </div>
-            <div class="px-12 py-6 text-gray-500">
-                Reminder: You're an admin, you're seeing functions that other users cannot see or use.
-            </div>
+            @if (Auth::user()->is_admin)
+                <div class="px-12 py-6 text-gray-500">
+                    Reminder: You're an admin, you're seeing functions that other users cannot see or use.
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

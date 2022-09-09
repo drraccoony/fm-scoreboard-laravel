@@ -6,6 +6,7 @@ use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +40,8 @@ Route::middleware(['forceChangePassword'])->group(function () {
             return redirect('/dashboard');
         });
 
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
 
         Route::get('/activities', [ActivitiesController::class, 'index'])
             ->name('activities');

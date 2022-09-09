@@ -72,7 +72,26 @@ class TeamsController extends Controller
      */
     public function join(Team $team)
     {
-        // Auth::user()->update(['the_field' => $theField]);
+        
+        $user = Auth::user();
+        $user->team_id = $team->id;
+        $user->save();
+        
+        return redirect('/teams');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Show  $show
+     * @return \Illuminate\Http\Response
+     */
+    public function null_team()
+    {
+        
+        $user = Auth::user();
+        $user->team_id = null;
+        $user->save();
         
         return redirect('/teams');
     }

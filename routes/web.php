@@ -111,6 +111,8 @@ Route::middleware(['forceChangePassword'])->group(function () {
                     ->name('.edit');
                 Route::put('/teams/{team}/update', 'update')
                     ->name('.update');
+                Route::get('/teams/nullteam', 'null_team')
+                    ->name('.nullteam');
             });
     });
 });

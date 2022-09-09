@@ -21,7 +21,7 @@
                                 by scanning the QR code with your
                                 smart phone camera and visiting the website (CAREFUL! There might be shifty foxes out
                                 there swapping codes, the website should look like
-                                https://beta.event-dev.com/log/some-really-long-unique-string). You'll see a big green
+                                https://beta.event-dev.com/log/1). You'll see a big green
                                 indicator saying it worked or a red one saying you already logged that activity. That's
                                 all you have to do!</p>
 

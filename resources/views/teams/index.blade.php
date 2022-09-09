@@ -36,6 +36,8 @@
                         @if (Auth::user()->is_admin)
                             <a href="{{route('teams.create')}}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto">
                             Create Team</a>
+                            <a href="{{route('teams.nullteam')}}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto">
+                            Unassign My Team</a>
                         @endif
                     </div>
                     </div>
@@ -61,6 +63,7 @@
                                         <span class="text-gray-400">An application administrator should create some teams for you to join.</span></td>
                                     </tr>
                                 @endif
+                                
                                 @foreach($teams as $team)
                                 <tr>
                                 <td class="whitespace-nowrap text-sm font-medium text-gray-900 sm:pl-3" style="background-color:{{$team->color}};" title="{{$team->color}}"></td>
@@ -74,7 +77,7 @@
                                     @if (Auth::user()->team_id == $team->id)
                                         <span class="text-gray-300 px-4">Selected</span>
                                     @else
-                                        <a href="#" class="text-green-600 hover:text-green-900 px-4">Join</a>
+                                        <a href="{{route('teams.join',['team'=>$team->id])}}" class="text-green-600 hover:text-green-900 px-4">Join</a>
                                     @endif
                                     @if (Auth::user()->is_admin) 
                                         <a href="{{route('teams.edit',['team'=>$team->id])}}" class="text-blue-600 hover:text-blue-900 px-4">Edit</a>

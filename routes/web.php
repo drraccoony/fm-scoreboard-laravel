@@ -59,6 +59,13 @@ Route::middleware(['forceChangePassword'])->group(function () {
 
         Route::get('/teams', [TeamsController::class, 'index'])
             ->name('teams');
+
+        Route::controller(TeamsController::class)
+            ->name('teams')
+            ->group(function () {
+                Route::get('/teams/{team}/join', 'join')
+                    ->name('.join');
+            });
     });
 
 
@@ -113,6 +120,8 @@ Route::middleware(['forceChangePassword'])->group(function () {
                     ->name('.edit');
                 Route::put('/teams/{team}/update', 'update')
                     ->name('.update');
+                Route::get('/teams/nullteam', 'null_team')
+                    ->name('.nullteam');
             });
     });
 });

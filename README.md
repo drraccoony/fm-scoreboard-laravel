@@ -43,16 +43,16 @@ A super useful tool for playing with the database and running queries in the com
 Some examples:
 
 - Get user id 2 in the DB:
-    ```bash
+    ```php
     >>> $team = App\Models\User::find(2)
     ```
 - Get user id 4, and return its team relationship.
-    ```bash
+    ```php
     >>> $user = App\Models\User::find(2)
     >>> $user->team
     ```
 - Create a new team.
-    ```bash
+    ```php
     >>> use App\Models\team
     >>> $t = new team;
     >>> $t->name = 'Space Hoots'
